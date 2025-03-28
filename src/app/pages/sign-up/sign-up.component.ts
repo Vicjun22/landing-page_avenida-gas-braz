@@ -7,9 +7,12 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { finalize, Observable, Subject, take, takeUntil } from 'rxjs';
+import { BrasilApiService } from '../../services/brasilapi.service';
 import { NotificationService } from '../../services/notification.service';
+import { CepResponse } from '../../types/cep-response.type';
 import { SignUpRequest } from '../../types/sign-up-request.type';
 import { cpfValidation } from '../../utils/cpf-validation';
+import { telefoneValidation } from '../../utils/telefone-validation';
 
 @Component({
   selector: 'app-sign-up',
@@ -25,9 +28,11 @@ export class SignUpComponent implements OnInit {
   public form: FormGroup;
   public isSubmitted = false;
   public loading = false;
+  public loadingCep = false;
   public errorType = { 'emptyField': false, 'incorrectField': false };
 
-  public constructor(private formBuilder: FormBuilder, private http: HttpClient, public sanitizer: DomSanitizer, public notification: NotificationService) {
+  public constructor(private formBuilder: FormBuilder, private http: HttpClient, public sanitizer: DomSanitizer,
+    public notification: NotificationService, public brasilapi: BrasilApiService) {
     this.form = this.formBuilder.group({
       nome:             ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       sobrenome:        ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
@@ -54,11 +59,7 @@ export class SignUpComponent implements OnInit {
 
   public handleChanges(): void {
     this.form.get('nome')?.valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
-      next: () => {
-        const isValidValue = cpfValidation(this.formField('cpf')?.value);
-        !isValidValue && this.formField('cpf')?.setErrors(() => this.errorType.incorrectField = true);
-      },
-      error: () => this.errorType.incorrectField = true
+      next: (value) => this.form.get('nome')?.patchValue(value, { emitEvent: false })
     });
 
     this.form.get('sobrenome')?.valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
@@ -66,15 +67,28 @@ export class SignUpComponent implements OnInit {
     });
 
     this.form.get('cpf')?.valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
-      next: (value) => this.form.get('cpf')?.patchValue(value, { emitEvent: false })
+      next: () => {
+        const isValidValue = cpfValidation(this.formField('cpf')?.value);
+        !isValidValue && this.formField('cpf')?.setErrors(() => this.errorType.incorrectField = true);
+      },
+      error: () => this.errorType.incorrectField = true
     });
 
     this.form.get('telefone')?.valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
-      next: (value) => this.form.get('telefone')?.patchValue(value, { emitEvent: false })
+      next: () => {
+        const isValidValue = telefoneValidation(this.formField('telefone')?.value);
+        !isValidValue && this.formField('telefone')?.setErrors(() => this.errorType.incorrectField = true);
+      },
+      error: () => this.errorType.incorrectField = true
     });
     
     this.form.get('cep')?.valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
-      next: (value) => this.form.get('cep')?.patchValue(value, { emitEvent: false })
+      next: (value) => {
+        this.form.get('cep')?.patchValue(value, { emitEvent: false });
+        if (value.length === 8) {
+          this.handleGetCep(value);
+        }
+      }
     });
 
     this.form.get('estado')?.valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
@@ -156,6 +170,21 @@ export class SignUpComponent implements OnInit {
 
   public formField(fieldName: string): AbstractControl | null {
     return this.form.get(fieldName);
+  }
+
+  public handleGetCep(cep: number) {
+    this.loadingCep = true;
+
+    this.brasilapi.getCEP(cep).pipe(take(1), finalize(() => this.loadingCep = false))
+      .subscribe({
+        next: (value: CepResponse) => {
+           this.formField('estado')?.patchValue(value.state, { emitValue: false});
+           this.formField('cidade')?.patchValue(value.city, { emitValue: false});
+           this.formField('bairro')?.patchValue(value.neighborhood, { emitValue: false});
+           this.formField('rua')?.patchValue(value.street, { emitValue: false});
+        },
+        error: () => this.formField('cep')?.setErrors(() => this.errorType.incorrectField = true)
+      })
   }
 
   public handleSendDataToGoogleSheets(data: any): Observable<any> {

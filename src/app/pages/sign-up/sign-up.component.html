@@ -15,7 +15,7 @@
                         placeholder="Digite seu nome"
                         minlength="3"
                         maxlength="75"
-                        autocomplete="ine"
+                        autocomplete="inline"
                         [value]="sanitizeInput(form.get('nome')?.value)"
                         [class.invalid]="isInvalidField('nome')" />
         
@@ -34,7 +34,7 @@
                         placeholder="Digite seu sobrenome"
                         minlength="3"
                         maxlength="75"
-                        autocomplete="ine"
+                        autocomplete="inline"
                         [value]="sanitizeInput(form.get('sobrenome')?.value)"
                         [class.invalid]="isInvalidField('sobrenome')" />
         
@@ -56,7 +56,7 @@
                         [mask]="'000.000.000-00'"
                         minlength="11"
                         maxlength="15"
-                        autocomplete="ine"
+                        autocomplete="inline"
                         [class.invalid]="isInvalidField('cpf')" />
         
                     <mat-error *ngIf="errorType.emptyField">
@@ -75,7 +75,7 @@
                         [mask]="'(00) 0 0000-0000'"
                         minlength="11"
                         maxlength="16"
-                        autocomplete="ine"
+                        autocomplete="inline"
                         [class.invalid]="isInvalidField('telefone')" />
         
                     <mat-error *ngIf="errorType.emptyField">
@@ -96,7 +96,7 @@
                         [mask]="'00000-000'"
                         minlength="8"
                         maxlength="9"
-                        autocomplete="ine"
+                        autocomplete="inline"
                         [class.invalid]="isInvalidField('cep')" />
         
                     <mat-error *ngIf="errorType.emptyField">
@@ -113,10 +113,10 @@
                     <p>Estado <span class="required">*</span></p>
                     <input formControlName="estado"
                         type="text"
-                        placeholder="RS"
+                        [placeholder]="loadingCep ? 'Carregando...' : 'RS'"
                         minlength="2"
                         maxlength="2"
-                        autocomplete="ine"
+                        autocomplete="inline"
                         [value]="sanitizeInput(form.get('estado')?.value)"
                         [class.invalid]="isInvalidField('estado')" />
         
@@ -132,10 +132,10 @@
                     <p>Cidade <span class="required">*</span></p>
                     <input formControlName="cidade"
                         type="text"
-                        placeholder="São Leopoldo"
+                        [placeholder]="loadingCep ? 'Carregando...' : 'São Leopoldo'"
                         minlength="3"
                         maxlength="30"
-                        autocomplete="ine"
+                        autocomplete="inline"
                         [value]="sanitizeInput(form.get('cidade')?.value)"
                         [class.invalid]="isInvalidField('cidade')" />
         
@@ -153,10 +153,10 @@
                     <p>Bairro <span class="required">*</span></p>
                     <input formControlName="bairro"
                         type="text"
-                        placeholder="Informe seu bairro"
+                        [placeholder]="loadingCep ? 'Carregando...' : 'Informe seu bairro'"
                         minlength="3"
                         maxlength="30"
-                        autocomplete="ine"
+                        autocomplete="inline"
                         [value]="sanitizeInput(form.get('bairro')?.value)"
                         [class.invalid]="isInvalidField('bairro')" />
         
@@ -172,10 +172,10 @@
                     <p>Rua <span class="required">*</span></p>
                     <input formControlName="rua"
                         type="text"
-                        placeholder="Informe sua rua"
+                        [placeholder]="loadingCep ? 'Carregando...' : 'Informe sua rua'"
                         minlength="3"
                         maxlength="30"
-                        autocomplete="ine"
+                        autocomplete="inline"
                         [value]="sanitizeInput(form.get('rua')?.value)"
                         [class.invalid]="isInvalidField('rua')" />
         
@@ -196,7 +196,7 @@
                         placeholder="000"
                         minlength="3"
                         maxlength="10"
-                        autocomplete="ine"
+                        autocomplete="inline"
                         [value]="sanitizeInput(form.get('numeroResidencia')?.value)"
                         [class.invalid]="isInvalidField('numeroResidencia')" />
         
@@ -215,7 +215,7 @@
                         placeholder="Casa / Apto"
                         minlength="3"
                         maxlength="30"
-                        autocomplete="ine"
+                        autocomplete="inline"
                         [value]="sanitizeInput(form.get('complemento')?.value)"
                         [class.invalid]="isInvalidField('complemento')" />
         
