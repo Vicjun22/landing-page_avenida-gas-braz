@@ -5,7 +5,8 @@ import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModu
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { DomSanitizer } from '@angular/platform-browser';
-import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { Router, RouterModule } from '@angular/router';
+import { NgxMaskDirective } from 'ngx-mask';
 import { finalize, Observable, Subject, take, takeUntil } from 'rxjs';
 import { BrasilApiService } from '../../services/brasilapi.service';
 import { NotificationService } from '../../services/notification.service';
@@ -17,7 +18,7 @@ import { telefoneValidation } from '../../utils/telefone-validation';
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, MatFormFieldModule, NgxMaskDirective, NgxMaskPipe],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, MatFormFieldModule, NgxMaskDirective, RouterModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss'
 })
@@ -30,9 +31,9 @@ export class SignUpComponent implements OnInit {
   public loading = false;
   public loadingCep = false;
   public errorType = { 'emptyField': false, 'incorrectField': false };
-
+  
   public constructor(private formBuilder: FormBuilder, private http: HttpClient, public sanitizer: DomSanitizer,
-    public notification: NotificationService, public brasilapi: BrasilApiService) {
+    public notification: NotificationService, public brasilapi: BrasilApiService, public router: Router) {
     this.form = this.formBuilder.group({
       nome:             ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       sobrenome:        ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
@@ -86,6 +87,10 @@ export class SignUpComponent implements OnInit {
       next: (value) => {
         this.form.get('cep')?.patchValue(value, { emitEvent: false });
         if (value.length === 8) {
+          this.formField('estado')?.disable();
+          this.formField('cidade')?.disable();
+          this.formField('bairro')?.disable();
+          this.formField('rua')?.disable();
           this.handleGetCep(value);
         }
       }
@@ -140,7 +145,7 @@ export class SignUpComponent implements OnInit {
       this.handleSendDataToGoogleSheets(formData)
         .pipe(take(1), finalize(() => this.loading = false))
         .subscribe({
-          next: () => this.notification.success("Cadastro realizado com sucesso!"),
+          next: () => this.router.navigate([this.sanitizeUrl('/')]),
           error: () => this.notification.error("Ocorreu um erro realizar seu cadastro.")
         })
 
@@ -190,6 +195,10 @@ export class SignUpComponent implements OnInit {
   public handleSendDataToGoogleSheets(data: any): Observable<any> {
     const url: string = 'https://script.google.com/macros/s/AKfycbyb7VAm9_hlrkt7qInc8gQH6lNf-7d_94YNxNNksPJ1VC0sqqgH6-_sA9PKK64sRMHv/exec';
     return this.http.post(url, JSON.stringify(data));
+  }
+
+  public sanitizeUrl(url: string): any {
+    return this.sanitizer.sanitize(SecurityContext.URL, url);
   }
 
   public sanitizeInput(value: string | null): any {

@@ -1,0 +1,73 @@
+@use '../../styles/colors.style' as *;
+
+.page-done {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    gap: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-green-type-1;
+    color: $white;
+    text-align: center;
+    
+    h1 {
+        font-size: 16px;
+    }
+}
+
+.red {
+    width: 100px;
+    height: 100px;
+    background: orangered;
+    box-shadow: 0px 0px 10px 5px orangered;
+}
+
+.orange {
+    width: 80px;
+    height: 80px;
+    background: orange;
+    box-shadow: 0px 0px 12px 6px orange;
+}
+
+.gold {
+    width: 70px;
+    height: 70px;
+    background: gold;
+    box-shadow: 0px 0px 9px 4px gold;
+}
+
+.white {
+    width: 60px;
+    height: 60px;
+    background: lightyellow;
+    box-shadow: 0px 0px 9px 4px lightyellow;
+}
+
+.flame-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: flicker 3ms ease-in infinite;
+}
+
+.flame {
+    position: absolute;
+    bottom: 0;
+    border-radius: 50% 0% 50% 50%;
+    transform: rotate(-45deg);
+}
+
+@keyframes flicker {
+    0% {transform: rotate(-1deg);}
+    20% {transform: rotate(2deg) scaleY(1.05);}
+    40% {transform: rotate(-1deg);}
+    60% {transform: rotate(1deg);}
+    80% {transform: rotate(-1deg) scaleY(0.9);}
+    100% {transform: rotate(1deg);}
+}

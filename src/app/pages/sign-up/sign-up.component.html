@@ -136,6 +136,7 @@
                         minlength="3"
                         maxlength="30"
                         autocomplete="inline"
+                        [disabled]="loadingCep"
                         [value]="sanitizeInput(form.get('cidade')?.value)"
                         [class.invalid]="isInvalidField('cidade')" />
         
@@ -157,6 +158,7 @@
                         minlength="3"
                         maxlength="30"
                         autocomplete="inline"
+                        [disabled]="loadingCep"
                         [value]="sanitizeInput(form.get('bairro')?.value)"
                         [class.invalid]="isInvalidField('bairro')" />
         
@@ -176,6 +178,7 @@
                         minlength="3"
                         maxlength="30"
                         autocomplete="inline"
+                        [disabled]="loadingCep"
                         [value]="sanitizeInput(form.get('rua')?.value)"
                         [class.invalid]="isInvalidField('rua')" />
         
