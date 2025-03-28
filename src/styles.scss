@@ -46,6 +46,7 @@ label {
         border: 2px solid transparent;
         border-radius: 10px;
         background-color: $color-gray_type-1;
+        box-shadow: $box-shadow;
     }
     
     & .invalid {
