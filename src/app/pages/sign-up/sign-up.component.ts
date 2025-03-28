@@ -5,13 +5,16 @@ import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModu
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { finalize, Observable, Subject, take, takeUntil } from 'rxjs';
 import { NotificationService } from '../../services/notification.service';
 import { SignUpRequest } from '../../types/sign-up-request.type';
+import { cpfValidation } from '../../utils/cpf-validation';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, MatFormFieldModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, MatFormFieldModule, NgxMaskDirective, NgxMaskPipe],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss'
 })
@@ -28,9 +31,9 @@ export class SignUpComponent implements OnInit {
     this.form = this.formBuilder.group({
       nome:             ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       sobrenome:        ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      cpf:              ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
-      telefone:         ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
-      cep:              ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
+      cpf:              ['', [Validators.required, Validators.minLength(11), Validators.maxLength(15)]],
+      telefone:         ['', [Validators.required, Validators.minLength(11), Validators.maxLength(16)]],
+      cep:              ['', [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
       estado:           ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
       cidade:           ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       bairro:           ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
@@ -51,7 +54,11 @@ export class SignUpComponent implements OnInit {
 
   public handleChanges(): void {
     this.form.get('nome')?.valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
-        next: (value) => this.form.get('nome')?.patchValue(value, { emitEvent: false })
+      next: () => {
+        const isValidValue = cpfValidation(this.formField('cpf')?.value);
+        !isValidValue && this.formField('cpf')?.setErrors(() => this.errorType.incorrectField = true);
+      },
+      error: () => this.errorType.incorrectField = true
     });
 
     this.form.get('sobrenome')?.valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
@@ -96,7 +103,6 @@ export class SignUpComponent implements OnInit {
   }
 
   public onSubmit(): void {
-
     this.loading = true;
     this.isSubmitted = true;
     this.errorType = { ...this.errorType, 'emptyField': false, 'incorrectField': false };
@@ -166,5 +172,5 @@ export class SignUpComponent implements OnInit {
     let textArea = this.document.createElement('textarea');
     textArea.innerHTML = encodedString;
     return textArea.value;
-}
+  }
 }

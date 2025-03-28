@@ -55,10 +55,10 @@
                     <input formControlName="cpf"
                         type="text"
                         placeholder="000.000.000-00"
+                        [mask]="'000.000.000-00'"
                         minlength="11"
-                        maxlength="11"
+                        maxlength="15"
                         autocomplete="inline"
-                        [value]="sanitizeInput(form.get('cpf')?.value)"
                         [class.invalid]="isInvalidField('cpf')"
                         (ngSubmit)="onSubmit()" />
         
@@ -73,12 +73,12 @@
                 <label>
                     <p>Telefone <span class="required">*</span></p>
                     <input formControlName="telefone"
-                        type="text"
-                        placeholder="(00) 00000 0000"
+                        type="tel"
+                        placeholder="(00) 0 0000-0000"
+                        [mask]="'(00) 0 0000-0000'"
                         minlength="11"
-                        maxlength="11"
+                        maxlength="16"
                         autocomplete="inline"
-                        [value]="sanitizeInput(form.get('telefone')?.value)"
                         [class.invalid]="isInvalidField('telefone')"
                         (ngSubmit)="onSubmit()" />
         
@@ -97,10 +97,10 @@
                     <input formControlName="cep"
                         type="text"
                         placeholder="00000-000"
+                        [mask]="'00000-000'"
                         minlength="8"
-                        maxlength="8"
+                        maxlength="9"
                         autocomplete="inline"
-                        [value]="sanitizeInput(form.get('cep')?.value)"
                         [class.invalid]="isInvalidField('cep')"
                         (ngSubmit)="onSubmit()" />
         
