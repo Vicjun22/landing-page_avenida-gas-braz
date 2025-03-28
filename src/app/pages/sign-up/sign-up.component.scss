@@ -1,0 +1,82 @@
+@use '../../styles/colors.style' as *;
+
+.sign-up {
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    div {
+        width: 750px;
+        padding: 50px;
+        margin: 50px 0;
+        background-color: $white;
+
+        .title {
+            font-weight: 400;
+            font-size: 32px;
+            line-height: 1.45;
+            word-break: break-word;
+            text-align: center;
+        }
+
+        form {
+            width: 100%;
+            margin: 0;
+            margin-top: 50px;
+            padding: 0;
+            gap: 25px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+
+            div {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                margin: 0;
+                padding: 0;
+                gap: 50px;
+            }
+
+            mat-error {
+                font-size: 13px;
+                font-weight: 500;
+                color: $color-error;
+            }
+
+            #submit {
+                width: 180px;
+                height: 50px;
+                cursor: pointer;
+                color: $white;
+                font-size: 16px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                border-radius: 4px;
+                background-color: $color-green-type-1;
+                transition: background 0.2s linear;
+                margin-top: 25px;
+            
+                &:focus {
+                    outline-width: auto;
+                    outline-color: $white;
+                }
+    
+                &:hover {
+                    background-color: $color-green-type-2;
+                    transition: background 0.2s linear;
+                }
+            }
+            
+            .loading__spinner::ng-deep circle {
+                stroke: $white;
+            }
+        }
+    }
+}

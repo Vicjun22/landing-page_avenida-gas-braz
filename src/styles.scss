@@ -1,0 +1,90 @@
+@use './app/styles/colors.style' as *;
+
+*, *::before, *::after {
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    min-width: 350px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overscroll-behavior: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    background-color: $background-default-color;
+}
+
+label {
+    width: 100%;
+    gap: 10px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    color: $text-color_black;
+    font-weight: 600;
+
+    & p {
+        margin: 0;
+        font-weight: 500;
+    }
+
+    & .required {
+        color: $color-red-type-1;
+    }
+
+    & input {
+        height: 45px;
+        padding: 0 15px;
+        font-size: 14px;
+        outline-color: $default-color_type-2;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        background-color: $color-gray_type-1;
+    }
+    
+    & .invalid {
+        border: 2px solid $color-error;
+    }
+}
+
+.success-message {
+    .mdc-snackbar__surface{
+        background-color: $color-success !important;
+        color: $white !important;
+    }
+    .mat-mdc-snack-bar-actions{
+        button {
+            color: $white !important;
+        }
+    }
+}
+
+.warning-message {
+    .mdc-snackbar__surface{
+        background-color: $color-warning !important;
+        color: $white !important;
+    }
+    .mat-mdc-snack-bar-actions{
+        button {
+            color: $white !important;
+        }
+    }
+}
+
+.error-message {
+    .mdc-snackbar__surface{
+        background-color: $color-error !important;
+        color: $white !important;
+    }
+    .mat-mdc-snack-bar-actions{
+        button {
+            color: $white !important;
+        }
+    }
+}

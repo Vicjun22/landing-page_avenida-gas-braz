@@ -1,0 +1,254 @@
+<div class="sign-up">
+
+    <div>
+        <h1 class="title">
+            Faça seu cadastro antes da inauguração e aproveite <strong>12% DE DESCONTO!</strong>
+        </h1>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <div>
+                <label>
+                    <p>Nome <span class="required">*</span></p>
+                    <input formControlName="nome"
+                        type="text"
+                        placeholder="Digite seu nome"
+                        minlength="3"
+                        maxlength="75"
+                        autocomplete="inline"
+                        [value]="sanitizeInput(form.get('nome')?.value)"
+                        [class.invalid]="isInvalidField('nome')"
+                        (ngSubmit)="onSubmit()" />
+        
+                    <mat-error *ngIf="errorType.emptyField">
+                        * O campo "nome" é obrigatório.
+                    </mat-error>
+                    <mat-error *ngIf="errorType.incorrectField">
+                        * O campo "nome" está incorreto.
+                    </mat-error>
+                </label>
+
+                <label>
+                    <p>Sobrenome <span class="required">*</span></p>
+                    <input formControlName="sobrenome"
+                        type="text"
+                        placeholder="Digite seu sobrenome"
+                        minlength="3"
+                        maxlength="75"
+                        autocomplete="inline"
+                        [value]="sanitizeInput(form.get('sobrenome')?.value)"
+                        [class.invalid]="isInvalidField('sobrenome')"
+                        (ngSubmit)="onSubmit()" />
+        
+                    <mat-error *ngIf="errorType.emptyField">
+                        * O campo "sobrenome" é obrigatório.
+                    </mat-error>
+                    <mat-error *ngIf="errorType.incorrectField">
+                        * O campo "sobrenome" está incorreto.
+                    </mat-error>
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    <p>CPF <span class="required">*</span></p>
+                    <input formControlName="cpf"
+                        type="text"
+                        placeholder="000.000.000-00"
+                        minlength="11"
+                        maxlength="11"
+                        autocomplete="inline"
+                        [value]="sanitizeInput(form.get('cpf')?.value)"
+                        [class.invalid]="isInvalidField('cpf')"
+                        (ngSubmit)="onSubmit()" />
+        
+                    <mat-error *ngIf="errorType.emptyField">
+                        * O campo "CPF" é obrigatório.
+                    </mat-error>
+                    <mat-error *ngIf="errorType.incorrectField">
+                        * O campo "CPF" está incorreto.
+                    </mat-error>
+                </label>
+
+                <label>
+                    <p>Telefone <span class="required">*</span></p>
+                    <input formControlName="telefone"
+                        type="text"
+                        placeholder="(00) 00000 0000"
+                        minlength="11"
+                        maxlength="11"
+                        autocomplete="inline"
+                        [value]="sanitizeInput(form.get('telefone')?.value)"
+                        [class.invalid]="isInvalidField('telefone')"
+                        (ngSubmit)="onSubmit()" />
+        
+                    <mat-error *ngIf="errorType.emptyField">
+                        * O campo "telefone" é obrigatório.
+                    </mat-error>
+                    <mat-error *ngIf="errorType.incorrectField">
+                        * O campo "telefone" está incorreto.
+                    </mat-error>
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    <p>CEP / Código Postal <span class="required">*</span></p>
+                    <input formControlName="cep"
+                        type="text"
+                        placeholder="00000-000"
+                        minlength="8"
+                        maxlength="8"
+                        autocomplete="inline"
+                        [value]="sanitizeInput(form.get('cep')?.value)"
+                        [class.invalid]="isInvalidField('cep')"
+                        (ngSubmit)="onSubmit()" />
+        
+                    <mat-error *ngIf="errorType.emptyField">
+                        * O campo "CEP / Código Postal" é obrigatório.
+                    </mat-error>
+                    <mat-error *ngIf="errorType.incorrectField">
+                        * O campo "CEP / Código Postal" está incorreto.
+                    </mat-error>
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    <p>Estado <span class="required">*</span></p>
+                    <input formControlName="estado"
+                        type="text"
+                        placeholder="RS"
+                        minlength="2"
+                        maxlength="2"
+                        autocomplete="inline"
+                        [value]="sanitizeInput(form.get('estado')?.value)"
+                        [class.invalid]="isInvalidField('estado')"
+                        (ngSubmit)="onSubmit()" />
+        
+                    <mat-error *ngIf="errorType.emptyField">
+                        * O campo "estado" é obrigatório.
+                    </mat-error>
+                    <mat-error *ngIf="errorType.incorrectField">
+                        * O campo "estado" está incorreto.
+                    </mat-error>
+                </label>
+
+                <label>
+                    <p>Cidade <span class="required">*</span></p>
+                    <input formControlName="cidade"
+                        type="text"
+                        placeholder="São Leopoldo"
+                        minlength="3"
+                        maxlength="30"
+                        autocomplete="inline"
+                        [value]="sanitizeInput(form.get('cidade')?.value)"
+                        [class.invalid]="isInvalidField('cidade')"
+                        (ngSubmit)="onSubmit()" />
+        
+                    <mat-error *ngIf="errorType.emptyField">
+                        * O campo "cidade" é obrigatório.
+                    </mat-error>
+                    <mat-error *ngIf="errorType.incorrectField">
+                        * O campo "cidade" está incorreto.
+                    </mat-error>
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    <p>Bairro <span class="required">*</span></p>
+                    <input formControlName="bairro"
+                        type="text"
+                        placeholder="Informe seu bairro"
+                        minlength="3"
+                        maxlength="30"
+                        autocomplete="inline"
+                        [value]="sanitizeInput(form.get('bairro')?.value)"
+                        [class.invalid]="isInvalidField('bairro')"
+                        (ngSubmit)="onSubmit()" />
+        
+                    <mat-error *ngIf="errorType.emptyField">
+                        * O campo "bairro" é obrigatório.
+                    </mat-error>
+                    <mat-error *ngIf="errorType.incorrectField">
+                        * O campo "bairro" está incorreto.
+                    </mat-error>
+                </label>
+
+                <label>
+                    <p>Rua <span class="required">*</span></p>
+                    <input formControlName="rua"
+                        type="text"
+                        placeholder="Informe sua rua"
+                        minlength="3"
+                        maxlength="30"
+                        autocomplete="inline"
+                        [value]="sanitizeInput(form.get('rua')?.value)"
+                        [class.invalid]="isInvalidField('rua')"
+                        (ngSubmit)="onSubmit()" />
+        
+                    <mat-error *ngIf="errorType.emptyField">
+                        * O campo "rua" é obrigatório.
+                    </mat-error>
+                    <mat-error *ngIf="errorType.incorrectField">
+                        * O campo "rua" está incorreto.
+                    </mat-error>
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    <p>Número da Residência / Apartamento <span class="required">*</span></p>
+                    <input formControlName="numeroResidencia"
+                        type="text"
+                        placeholder="000"
+                        minlength="3"
+                        maxlength="10"
+                        autocomplete="inline"
+                        [value]="sanitizeInput(form.get('numeroResidencia')?.value)"
+                        [class.invalid]="isInvalidField('numeroResidencia')"
+                        (ngSubmit)="onSubmit()" />
+        
+                    <mat-error *ngIf="errorType.emptyField">
+                        * O campo "número da residência / apartamento" é obrigatório.
+                    </mat-error>
+                    <mat-error *ngIf="errorType.incorrectField">
+                        * O campo "número da residência / apartamento" está incorreto.
+                    </mat-error>
+                </label>
+
+                <label>
+                    <p>Complemento</p>
+                    <input formControlName="complemento"
+                        type="text"
+                        placeholder="Casa / Apto"
+                        minlength="3"
+                        maxlength="30"
+                        autocomplete="inline"
+                        [value]="sanitizeInput(form.get('complemento')?.value)"
+                        [class.invalid]="isInvalidField('complemento')"
+                        (ngSubmit)="onSubmit()" />
+        
+                    <mat-error *ngIf="errorType.incorrectField">
+                        * O campo "complemento" está incorreto.
+                    </mat-error>
+                </label>
+            </div>
+
+            <button id="submit" type="submit">
+                <span *ngIf="!loading">Enviar</span>
+    
+                <mat-spinner *ngIf="loading"
+                    class="loading__spinner"
+                    aria-label="Carregando..."
+                    [diameter]="30"
+                    [strokeWidth]="3">
+                </mat-spinner> 
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
