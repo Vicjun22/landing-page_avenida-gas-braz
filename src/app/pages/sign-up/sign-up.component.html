@@ -15,10 +15,9 @@
                         placeholder="Digite seu nome"
                         minlength="3"
                         maxlength="75"
-                        autocomplete="inline"
+                        autocomplete="ine"
                         [value]="sanitizeInput(form.get('nome')?.value)"
-                        [class.invalid]="isInvalidField('nome')"
-                        (ngSubmit)="onSubmit()" />
+                        [class.invalid]="isInvalidField('nome')" />
         
                     <mat-error *ngIf="errorType.emptyField">
                         * O campo "nome" é obrigatório.
@@ -35,10 +34,9 @@
                         placeholder="Digite seu sobrenome"
                         minlength="3"
                         maxlength="75"
-                        autocomplete="inline"
+                        autocomplete="ine"
                         [value]="sanitizeInput(form.get('sobrenome')?.value)"
-                        [class.invalid]="isInvalidField('sobrenome')"
-                        (ngSubmit)="onSubmit()" />
+                        [class.invalid]="isInvalidField('sobrenome')" />
         
                     <mat-error *ngIf="errorType.emptyField">
                         * O campo "sobrenome" é obrigatório.
@@ -58,9 +56,8 @@
                         [mask]="'000.000.000-00'"
                         minlength="11"
                         maxlength="15"
-                        autocomplete="inline"
-                        [class.invalid]="isInvalidField('cpf')"
-                        (ngSubmit)="onSubmit()" />
+                        autocomplete="ine"
+                        [class.invalid]="isInvalidField('cpf')" />
         
                     <mat-error *ngIf="errorType.emptyField">
                         * O campo "CPF" é obrigatório.
@@ -78,9 +75,8 @@
                         [mask]="'(00) 0 0000-0000'"
                         minlength="11"
                         maxlength="16"
-                        autocomplete="inline"
-                        [class.invalid]="isInvalidField('telefone')"
-                        (ngSubmit)="onSubmit()" />
+                        autocomplete="ine"
+                        [class.invalid]="isInvalidField('telefone')" />
         
                     <mat-error *ngIf="errorType.emptyField">
                         * O campo "telefone" é obrigatório.
@@ -100,9 +96,8 @@
                         [mask]="'00000-000'"
                         minlength="8"
                         maxlength="9"
-                        autocomplete="inline"
-                        [class.invalid]="isInvalidField('cep')"
-                        (ngSubmit)="onSubmit()" />
+                        autocomplete="ine"
+                        [class.invalid]="isInvalidField('cep')" />
         
                     <mat-error *ngIf="errorType.emptyField">
                         * O campo "CEP / Código Postal" é obrigatório.
@@ -121,10 +116,9 @@
                         placeholder="RS"
                         minlength="2"
                         maxlength="2"
-                        autocomplete="inline"
+                        autocomplete="ine"
                         [value]="sanitizeInput(form.get('estado')?.value)"
-                        [class.invalid]="isInvalidField('estado')"
-                        (ngSubmit)="onSubmit()" />
+                        [class.invalid]="isInvalidField('estado')" />
         
                     <mat-error *ngIf="errorType.emptyField">
                         * O campo "estado" é obrigatório.
@@ -141,10 +135,9 @@
                         placeholder="São Leopoldo"
                         minlength="3"
                         maxlength="30"
-                        autocomplete="inline"
+                        autocomplete="ine"
                         [value]="sanitizeInput(form.get('cidade')?.value)"
-                        [class.invalid]="isInvalidField('cidade')"
-                        (ngSubmit)="onSubmit()" />
+                        [class.invalid]="isInvalidField('cidade')" />
         
                     <mat-error *ngIf="errorType.emptyField">
                         * O campo "cidade" é obrigatório.
@@ -163,10 +156,9 @@
                         placeholder="Informe seu bairro"
                         minlength="3"
                         maxlength="30"
-                        autocomplete="inline"
+                        autocomplete="ine"
                         [value]="sanitizeInput(form.get('bairro')?.value)"
-                        [class.invalid]="isInvalidField('bairro')"
-                        (ngSubmit)="onSubmit()" />
+                        [class.invalid]="isInvalidField('bairro')" />
         
                     <mat-error *ngIf="errorType.emptyField">
                         * O campo "bairro" é obrigatório.
@@ -183,10 +175,9 @@
                         placeholder="Informe sua rua"
                         minlength="3"
                         maxlength="30"
-                        autocomplete="inline"
+                        autocomplete="ine"
                         [value]="sanitizeInput(form.get('rua')?.value)"
-                        [class.invalid]="isInvalidField('rua')"
-                        (ngSubmit)="onSubmit()" />
+                        [class.invalid]="isInvalidField('rua')" />
         
                     <mat-error *ngIf="errorType.emptyField">
                         * O campo "rua" é obrigatório.
@@ -205,10 +196,9 @@
                         placeholder="000"
                         minlength="3"
                         maxlength="10"
-                        autocomplete="inline"
+                        autocomplete="ine"
                         [value]="sanitizeInput(form.get('numeroResidencia')?.value)"
-                        [class.invalid]="isInvalidField('numeroResidencia')"
-                        (ngSubmit)="onSubmit()" />
+                        [class.invalid]="isInvalidField('numeroResidencia')" />
         
                     <mat-error *ngIf="errorType.emptyField">
                         * O campo "número da residência / apartamento" é obrigatório.
@@ -225,10 +215,9 @@
                         placeholder="Casa / Apto"
                         minlength="3"
                         maxlength="30"
-                        autocomplete="inline"
+                        autocomplete="ine"
                         [value]="sanitizeInput(form.get('complemento')?.value)"
-                        [class.invalid]="isInvalidField('complemento')"
-                        (ngSubmit)="onSubmit()" />
+                        [class.invalid]="isInvalidField('complemento')" />
         
                     <mat-error *ngIf="errorType.incorrectField">
                         * O campo "complemento" está incorreto.
