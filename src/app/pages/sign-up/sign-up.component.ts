@@ -7,7 +7,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 import { NgxMaskDirective } from 'ngx-mask';
-import { finalize, Observable, Subject, take, takeUntil } from 'rxjs';
+import { catchError, finalize, Observable, of, Subject, take, takeUntil, throwError } from 'rxjs';
 import { BrasilApiService } from '../../services/brasilapi.service';
 import { NotificationService } from '../../services/notification.service';
 import { CepResponse } from '../../types/cep-response.type';
@@ -87,10 +87,10 @@ export class SignUpComponent implements OnInit {
       next: (value) => {
         this.form.get('cep')?.patchValue(value, { emitEvent: false });
         if (value.length === 8) {
-          this.formField('estado')?.disable();
-          this.formField('cidade')?.disable();
-          this.formField('bairro')?.disable();
-          this.formField('rua')?.disable();
+          this.form.get('estado')?.disable();
+          this.form.get('cidade')?.disable();
+          this.form.get('bairro')?.disable();
+          this.form.get('rua')?.disable();
           this.handleGetCep(value);
         }
       }
@@ -143,11 +143,23 @@ export class SignUpComponent implements OnInit {
       }
 
       this.handleSendDataToGoogleSheets(formData)
-        .pipe(take(1), finalize(() => this.loading = false))
-        .subscribe({
-          next: () => this.router.navigate([this.sanitizeUrl('/')]),
-          error: () => this.notification.error("Ocorreu um erro realizar seu cadastro.")
+      .pipe(
+        take(1),
+        finalize(() => this.loading = false),
+        catchError((error) => {
+          if (error.status === 200) {
+            this.router.navigate([this.sanitizeUrl('/done')]);
+            return of(null);
+          }
+          console.log(error)
+          this.notification.error("Ocorreu um erro ao realizar seu cadastro.");
+          return throwError(() => error);
         })
+      )
+      .subscribe({
+        next: () => {},
+        error: () => {}
+      });
 
     } else {
       this.notification.error("Preencha os campos corretamente.");
