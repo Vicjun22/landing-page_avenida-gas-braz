@@ -1,27 +1,57 @@
-# App
+# Landing Page Avenida Gas Braz
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+Este projeto é uma landing page desenvolvida para o cliente Avenida Gas Braz.
 
-## Development server
+## Objetivo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+O objetivo deste projeto é fornecer uma landing page funcional e otimizada para o cliente Avenida Gas Braz, utilizando as melhores práticas de desenvolvimento web e tecnologias modernas.
 
-## Code scaffolding
+## Tecnologias
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Para este projeto, foram utilizadas as seguintes tecnologias:
 
-## Build
+| Tecnologia  | Versão | Documentação                                                       |
+| ----------- | ------ | ------------------------------------------------------------------ |
+| TypeScript  | 4.5    | https://www.typescriptlang.org/docs/                               |
+| Angular     | 13     | https://angular.io/docs                                            |
+| HTML        |        | https://developer.mozilla.org/en-US/docs/Web/HTML                  |
+| CSS         |        | https://developer.mozilla.org/en-US/docs/Web/CSS                   |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Desenvolvimento
 
-## Running unit tests
+### Primeiro Passo:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Como primeiro passo para o desenvolvimento, foi criado um layout responsivo utilizando HTML e CSS, garantindo que a landing page seja visualmente atraente e funcional em dispositivos de diferentes tamanhos.
 
-## Running end-to-end tests
+### Segundo Passo:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+O segundo passo envolveu a integração com uma API de terceiros para obter dados dinâmicos que são exibidos na landing page. A API utilizada foi a Google Sheets API para carregar dados diretamente de uma planilha compartilhada.
 
-## Further help
+```typescript
+fetch('https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}?key={API_KEY}')
+  .then(response => response.json())
+  .then(data => {
+    // Processar dados da planilha
+  });
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Terceiro Passo:
+
+O terceiro passo foi implementar a lógica de navegação e interação do usuário utilizando Angular, permitindo uma experiência de usuário fluida e intuitiva.
+
+### Quarto Passo:
+
+O quarto e último passo foi realizar testes e otimizações para garantir que a landing page funcione corretamente em diferentes navegadores e dispositivos, além de otimizar o desempenho para tempos de carregamento rápidos.
+
+## Deploy
+
+O deploy da landing page foi realizado utilizando a plataforma Vercel. A página está disponível em [landing-page-avenida-gas-braz.vercel.app](https://landing-page-avenida-gas-braz.vercel.app).
+
+## Contato
+
+Para mais informações ou dúvidas, entre em contato:
+
+- Email: vicjun22@gmail.com
+- LinkedIn: [Victor Elias Ross Jr.](https://www.linkedin.com/in/victor-elias-ross-jr/)
+
+Att. Victor
