@@ -36,22 +36,6 @@ npm start
 
 O servidor estará disponível em [http://localhost:4200](http://localhost:4200).
 
-### SSR (Server-Side Rendering):
-
-Para rodar o projeto com renderização do lado servidor, utilize:
-
-```bash
-npm run serve:ssr:app
-```
-
-### Testes:
-
-Para executar os testes, utilize o comando:
-
-```bash
-npm test
-```
-
 ## Deploy
 
 O deploy da landing page pode ser realizado utilizando a plataforma Vercel. A aplicação está disponível em: [Landing Page Avenida Gas Braz](https://landing-page-avenida-gas-braz.vercel.app).
