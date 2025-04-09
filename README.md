@@ -8,50 +8,60 @@ O objetivo deste projeto é fornecer uma landing page funcional e otimizada para
 
 ## Tecnologias
 
-Para este projeto, foram utilizadas as seguintes tecnologias:
+Este projeto utiliza as seguintes tecnologias:
 
-| Tecnologia  | Versão | Documentação                                                       |
-| ----------- | ------ | ------------------------------------------------------------------ |
-| TypeScript  | 4.5    | https://www.typescriptlang.org/docs/                               |
-| Angular     | 13     | https://angular.io/docs                                            |
-| HTML        |        | https://developer.mozilla.org/en-US/docs/Web/HTML                  |
-| CSS         |        | https://developer.mozilla.org/en-US/docs/Web/CSS                   |
+| Tecnologia   | Versão   | Documentação                                      |
+|--------------|----------|---------------------------------------------------|
+| TypeScript   | ~5.5.2   | [TypeScript Docs](https://www.typescriptlang.org/docs/) |
+| Angular      | ^19.2.4  | [Angular Docs](https://angular.io/docs)           |
+| HTML         |          | [HTML Docs](https://developer.mozilla.org/en-US/docs/Web/HTML) |
+| CSS          |          | [CSS Docs](https://developer.mozilla.org/en-US/docs/Web/CSS) |
+| Express      | ^4.18.2  | [Express Docs](https://expressjs.com/)            |
+| RxJS         | ~7.8.0   | [RxJS Docs](https://rxjs.dev/)                    |
+| Angular Material | ^19.2.7 | [Material Docs](https://material.angular.io/) |
 
 ## Desenvolvimento
 
-### Primeiro Passo:
+### Primeiros Passos:
 
-Como primeiro passo para o desenvolvimento, foi criado um layout responsivo utilizando HTML e CSS, garantindo que a landing page seja visualmente atraente e funcional em dispositivos de diferentes tamanhos.
+Para iniciar o desenvolvimento, certifique-se de ter o Node.js instalado em sua máquina. Em seguida, execute os seguintes comandos:
 
-### Segundo Passo:
+```bash
+# Instalar as dependências do projeto
+npm install
 
-O segundo passo envolveu a integração com uma API de terceiros para obter dados dinâmicos que são exibidos na landing page. A API utilizada foi a Google Sheets API para carregar dados diretamente de uma planilha compartilhada.
-
-```typescript
-fetch('https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}?key={API_KEY}')
-  .then(response => response.json())
-  .then(data => {
-    // Processar dados da planilha
-  });
+# Rodar o servidor de desenvolvimento
+npm start
 ```
 
-### Terceiro Passo:
+O servidor estará disponível em [http://localhost:4200](http://localhost:4200).
 
-O terceiro passo foi implementar a lógica de navegação e interação do usuário utilizando Angular, permitindo uma experiência de usuário fluida e intuitiva.
+### SSR (Server-Side Rendering):
 
-### Quarto Passo:
+Para rodar o projeto com renderização do lado servidor, utilize:
 
-O quarto e último passo foi realizar testes e otimizações para garantir que a landing page funcione corretamente em diferentes navegadores e dispositivos, além de otimizar o desempenho para tempos de carregamento rápidos.
+```bash
+npm run serve:ssr:app
+```
+
+### Testes:
+
+Para executar os testes, utilize o comando:
+
+```bash
+npm test
+```
 
 ## Deploy
 
-O deploy da landing page foi realizado utilizando a plataforma Vercel. A página está disponível em [landing-page-avenida-gas-braz.vercel.app](https://landing-page-avenida-gas-braz.vercel.app).
+O deploy da landing page pode ser realizado utilizando a plataforma Vercel. A aplicação está disponível em: [Landing Page Avenida Gas Braz](https://landing-page-avenida-gas-braz.vercel.app).
 
 ## Contato
 
 Para mais informações ou dúvidas, entre em contato:
 
-- Email: vicjun22@gmail.com
-- LinkedIn: [Victor Elias Ross Jr.](https://www.linkedin.com/in/victor-elias-ross-jr/)
+- **Email:** vicjun22@gmail.com
+- **LinkedIn:** [Victor Elias Ross Jr.](https://www.linkedin.com/in/victor-elias-ross-jr/)
 
-Att. Victor
+Atenciosamente,  
+Victor
