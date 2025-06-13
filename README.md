@@ -1,27 +1,51 @@
-# App
+# Landing Page Avenida Gas Braz
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+Este projeto é uma landing page desenvolvida para o cliente Avenida Gas Braz.
 
-## Development server
+## Objetivo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+O objetivo deste projeto é fornecer uma landing page funcional e otimizada para o cliente Avenida Gas Braz, utilizando as melhores práticas de desenvolvimento web e tecnologias modernas.
 
-## Code scaffolding
+## Tecnologias
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Este projeto utiliza as seguintes tecnologias:
 
-## Build
+| Tecnologia   | Versão   | Documentação                                      |
+|--------------|----------|---------------------------------------------------|
+| TypeScript   | ~5.5.2   | [TypeScript Docs](https://www.typescriptlang.org/docs/) |
+| Angular      | ^19.2.4  | [Angular Docs](https://angular.io/docs)           |
+| HTML         |          | [HTML Docs](https://developer.mozilla.org/en-US/docs/Web/HTML) |
+| CSS          |          | [CSS Docs](https://developer.mozilla.org/en-US/docs/Web/CSS) |
+| Express      | ^4.18.2  | [Express Docs](https://expressjs.com/)            |
+| RxJS         | ~7.8.0   | [RxJS Docs](https://rxjs.dev/)                    |
+| Angular Material | ^19.2.7 | [Material Docs](https://material.angular.io/) |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Desenvolvimento
 
-## Running unit tests
+### Primeiros Passos:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Para iniciar o desenvolvimento, certifique-se de ter o Node.js instalado em sua máquina. Em seguida, execute os seguintes comandos:
 
-## Running end-to-end tests
+```bash
+# Instalar as dependências do projeto
+npm install
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Rodar o servidor de desenvolvimento
+npm start
+```
 
-## Further help
+O servidor estará disponível em [http://localhost:4200](http://localhost:4200).
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Deploy
+
+O deploy da landing page pode ser realizado utilizando a plataforma Vercel. A aplicação está disponível em: [Landing Page Avenida Gas Braz](https://landing-page-avenida-gas-braz.vercel.app).
+
+## Contato
+
+Para mais informações ou dúvidas, entre em contato:
+
+- **Email:** vicjun22@gmail.com
+- **LinkedIn:** [Victor Elias Ross Jr.](https://www.linkedin.com/in/victor-elias-ross-jr/)
+
+Atenciosamente,  
+Victor
